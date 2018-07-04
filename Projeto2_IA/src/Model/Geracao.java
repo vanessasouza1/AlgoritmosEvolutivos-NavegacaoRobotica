@@ -97,8 +97,16 @@ public class Geracao {
         return fitnessMedio;
     }
     
+    public ArrayList<Robo> getArrayIndividuos(){
+        return arrayIndividuos;
+    }
+    
    
-   
+    public ArrayList<Integer> getArrayFitnessIndividuos(){
+        return arrayFitnessIndividuos;
+    }
+    
+    
     
    
 }

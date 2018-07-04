@@ -40,11 +40,14 @@ public class Robo {
     
     /*Ler os sensores na sua posição atual e adiciona a ação esperada ao array sequencia passos*/
     /*quando for adicionar os passos do robo ao atualizar o fitness usa esse metodo*/
-    public void leituraSensorial(int paredeFrente, int finalFrente,
+    public String leituraSensorial(int paredeFrente, int finalFrente,
             int finalDireita, int finalEsquerda, int finalAtras){
             String acao = cromossomo.retornaAcaoAPartirDosSensores(paredeFrente, finalFrente, finalDireita, finalEsquerda, finalAtras);
             sequenciaPassos.add(acao);
+            return acao;
     }
+    
+    
     
     public void setPosicaoSequenciaPassos(int posicao, String elemento){
         sequenciaPassos.add(posicao, elemento);

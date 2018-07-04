@@ -1,9 +1,11 @@
 /*Laço maior*/
 package Controller;
 
+import Model.Avaliacao;
 import Model.Geracao;
 import Model.Robo;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 
@@ -37,16 +39,47 @@ public class Evolucao {
         return geracaoInicial;
     }
     
-    
-    public void criaOutrasGeracoes(){
+    public void atualizaFitnessPopulacao(Geracao geracao){
+        ArrayList individuos = geracao.getArrayIndividuos();
+        Avaliacao avaliacao = new Avaliacao();
+        Iterator it = individuos.iterator();
+        while(it.hasNext()){
+            Robo r = (Robo)it.next();
+            avaliacao.calculaFitness(r); // esse calcula fitness ja insere no robo
+        }
         
     }
-    public void avaliacao(){
+    
+    public void criaOutrasGeracoes(Geracao geracaoAnterior){//essa geracao tem q ter o fitness ja
+        //sorteia os pais
+        //faz o cruzamento
+        //gera um filho
+        //faz mutacao
+        
+        
+        
         
     }
     
+    public Robo[] sorteiaPais(Geracao geracaoAnterior){
+        ArrayList<Robo> individuosGeracao = geracaoAnterior.getArrayIndividuos();
+        return null;
+    }
+    
+    
+    
+    public void avaliacao(){//avalia geracao atual para atualizar o fitness
+        
+    }
+   
+    
+                                    /*Essa parte que vai gerar uma nova populacao*/
     public void selecao(){
+        //faz cruzamento entre os pais
         
+        //Seleciona progenitores atraves da proporção 75% melhor fitness, 15% aleatório e 10% pior fitness
+        // Para a reproducão será selecionado dois pais aleatorios e feito o cross over gerando 2 individuos
+        //Para selecionar sobreviventes 
     }
     
     public void variacao(){

@@ -24,7 +24,8 @@ public class Avaliacao {
      
     
     
-    public void obtemLeituraSensoresApartirDaPosicao(int fimX, int fimY, int roboX, int roboY, char posicao){
+    
+    public Integer[] obtemLeituraSensoresApartirDaPosicao(int fimX, int fimY, int roboX, int roboY, char posicao){
         
         /*A referencia vai ter q ser absoluta para n perder para que lado esta indo no labirinto*/
         
@@ -34,6 +35,10 @@ public class Avaliacao {
        // if()
        
        //tem que procurar a direcao do fim
+       Integer[] leitura = new Integer[5];
+       
+       
+       return leitura;
     }
     
     private void retornaPosicaoVaziAoRedor(){
@@ -83,13 +88,13 @@ public class Avaliacao {
         
         if(xFim == xAtual && yFim>yAtual){
             direcaoH = ' ';
-            direcaoV = 'B' ;       
+            direcaoV = 'B' ;
         }
         else if(xFim == xAtual && yFim<yAtual){
             direcaoH = ' ';
             direcaoV = 'C' ;       
         }
-        else if(xFim > xAtual && yFim ==yAtual){
+        else if(xFim > xAtual && yFim == yAtual){
             direcaoH = 'D';
             direcaoV = ' ' ;       
         }
@@ -116,27 +121,68 @@ public class Avaliacao {
         }
          
     }
-    private void sensorFinalFrente(){
-       switch(direcaoAtual){
+    private int sensorFinalFrente(){
+        
+        if(yFim == yAtual && xFim > xAtual){
+            return 1;
+        }
+
+            return 0;
+        
+//       switch(direcaoAtual){
+//           case 'D':
+//               
+//           break;
+//           case 'E':
+//               
+//           break;
+//           case 'C':
+//               
+//           break;
+//           case 'B':
+//               
+//           break;
+//           
+//           ;
+           
+       //}
+    }
+    //precisa verificar qual é a nova direita, caso ele gire
+    //pegando referencia de Norte, Sul, Oeste, Leste
+    // norte -> direita x igual, y menor
+    // sul -> direita x igual, y maior
+    // oeste -> direita x menor, y igual
+    // leste -> direita x maior, y igual
+    
+    private int sensorFinalDireita(){
+       
+        switch(direcaoAtual){
            case 'D':
-               
+               if(xAtual > xFim && yAtual == yFim){
+                   
+               }
            break;
            case 'E':
+               if(xAtual < xFim && yAtual == yFim){
                
+                }
            break;
            case 'C':
-               
+                if(xAtual == xFim && yAtual < yFim){
+                    return 1;
+                }
            break;
            case 'B':
-               
+               if(xAtual == xFim && yAtual > yFim){
+            
+                }
            break;
            
-           
-           
        }
+        return 3;
     }
     
-    private void sensorFinalDireita(){
+    private int sensorFinalEsquerda(){
         switch(direcaoAtual){
            case 'D':
                
@@ -152,9 +198,10 @@ public class Avaliacao {
            break;
            
        }
+        return 3;
     }
     
-    private void sensorFinalEsquerda(){
+    private int sensorFinalAtras(){
         switch(direcaoAtual){
            case 'D':
                
@@ -170,36 +217,15 @@ public class Avaliacao {
            break;
            
        }
+        return 3;
     }
     
-    private void sensorFinalAtras(){
-        switch(direcaoAtual){
-           case 'D':
-               
-           break;
-           case 'E':
-               
-           break;
-           case 'C':
-               
-           break;
-           case 'B':
-               
-           break;
-           
-       }
-    }
-    
-    
-    
-    
-    
-    private void movimentaRobo(){
+    private void movimentaRobo(int xAtual, int yAtual, char direcao){ //a direcao padrão vai ser direita
+        //o melhor na movimentacao é deixar a direcao fixa
         
     }
-    private void modificaDirecaoRobo(){
-        
-    }
+    
+   
     
     private void atualizaPosicaoRobo(int novoX, int novoY, char novaDirecao){
         this.xAtual = novoX;
@@ -208,13 +234,33 @@ public class Avaliacao {
     }
     
     
-    
-     
-     
-     public int calculaFitness(){
-         return 0;
+     public int calculaFitness(Robo roboASerAvaliado){
+        String acao = roboASerAvaliado.leituraSensorial(sensorParedeFrente(), sensorFinalFrente(),
+                 sensorFinalDireita(), sensorFinalEsquerda(), sensorFinalAtras());
+        
+        switch(acao){ //se acao for VR, Ve,... ele vai mover o robo e tals
+            case "":
+            
+            break;
+            case "":
+            
+            break;
+            case "":
+            
+            break;
+            case "":
+            
+            break;
+        }
+         
+        
+         
+        
+        // insereFitnessNoIndividuo(); (No proprio robo
+         return 0;//fitness
      }
      
+     //nem precisa desse metodo
      private void insereFitnessNoIndividuo(int geracaoIndividuo, int idRobo, int fitness){
          
      }
