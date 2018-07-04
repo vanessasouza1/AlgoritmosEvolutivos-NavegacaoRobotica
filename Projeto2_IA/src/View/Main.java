@@ -20,7 +20,7 @@ public class Main {
         
         for(int i=0; i<100;i++){
             Geracao novaGeracao = evolucao.criaOutrasGeracoes(geracao);
-            evolucao.atualizaFitnessPopulacao(novaGeracao);
+            //evolucao.atualizaFitnessPopulacao(novaGeracao);
             System.out.println("Geração : " + novaGeracao.getIdGeracao() + 
                     "Melhor Fitness : " + novaGeracao.calculaFitnessMelhorIndividuo()+
                     "Fitness Médio : " + novaGeracao.calculaMediaFitness());

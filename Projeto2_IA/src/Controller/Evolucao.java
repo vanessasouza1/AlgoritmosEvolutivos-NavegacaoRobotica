@@ -51,6 +51,10 @@ public class Evolucao {
     }
     
     public Geracao criaOutrasGeracoes(Geracao geracaoAnterior){//essa geracao tem q ter o fitness ja
+        //sorteia os pais
+        //faz o cruzamento
+        //gera um filho
+        //faz mutacao
         Geracao geracaoNova = new Geracao();
         ArrayList<Robo> geracaoTemp = new ArrayList<Robo>();
         for(int i=0; i<200; i++){
@@ -59,16 +63,17 @@ public class Evolucao {
             sorteiaMutacaoNoCromossomo(3, individuoNovo);
             individuoNovo.setGeracao(geracaoNova.getIdGeracao());
             geracaoTemp.add(individuoNovo);
+            geracaoNova.adicionaRoboGeracao(individuoNovo);
         }
+        atualizaFitnessPopulacao(geracaoNova);
+        
+        
         
         //ordena fitness
         //seleciona 75% melhor fitness 15% aleatorios 10% piores
         
         
-        //sorteia os pais
-        //faz o cruzamento
-        //gera um filho
-        //faz mutacao
+        
         return null; //retorna a nova geracao
        
     }

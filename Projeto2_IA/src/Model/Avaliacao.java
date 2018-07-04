@@ -147,58 +147,74 @@ public class Avaliacao {
            
        //}
     }
+    
     //precisa verificar qual é a nova direita, caso ele gire
-    //pegando referencia de Norte, Sul, Oeste, Leste
-    // norte -> direita x igual, y menor
-    // sul -> direita x igual, y maior
-    // oeste -> direita x menor, y igual
-    // leste -> direita x maior, y igual
+    //pegando a referencia de Cima, Baixo, Esquerda, Direita
+    //cima -> xAtual menor
+    //baixo -> xAtual maior
+    //esquerda -> yAtual menor
+    //direita -> yAtual maior
     
     private int sensorFinalDireita(){
        
         switch(direcaoAtual){
            case 'D':
-               if(xAtual > xFim && yAtual == yFim){
-                   
+               if(yAtual > yFim){
+                   return 1;
                }
            break;
            case 'E':
-               if(xAtual < xFim && yAtual == yFim){
-               
+               if(yAtual < yFim){
+                   return 1;
                 }
            break;
            case 'C':
-                if(xAtual == xFim && yAtual < yFim){
+                if(xAtual < xFim){
                     return 1;
                 }
            break;
            case 'B':
-               if(xAtual == xFim && yAtual > yFim){
-            
+               if(xAtual > xFim){
+                   return 1;
                 }
            break;
            
        }
-        return 3;
+        return 0;
     }
+    
+    //precisa verificar qual é a nova esquerda, caso ele gire
+    //pegando a referencia de Cima, Baixo, Esquerda, Direita
+    //cima -> xAtual maior
+    //baixo -> xAtual menor
+    //esquerda -> yAtual maior
+    //direita -> yAtual menor
     
     private int sensorFinalEsquerda(){
         switch(direcaoAtual){
            case 'D':
-               
+                if(yAtual < yFim){
+                    return 1;
+                }
            break;
            case 'E':
-               
+                if(yAtual > yFim){
+                   return 1;
+                }
            break;
            case 'C':
-               
+                if(xAtual > xFim){
+                    return 1;
+                }
            break;
            case 'B':
-               
+                if(xAtual < xFim){
+                    return 1;
+                }
            break;
            
        }
-        return 3;
+        return 0;
     }
     
     private int sensorFinalAtras(){
@@ -238,26 +254,31 @@ public class Avaliacao {
         String acao = roboASerAvaliado.leituraSensorial(sensorParedeFrente(), sensorFinalFrente(),
                  sensorFinalDireita(), sensorFinalEsquerda(), sensorFinalAtras());
         
-        switch(acao){ //se acao for VR, Ve,... ele vai mover o robo e tals
-            case "VT":
-                
-            break;
-            case "VE":
-            
-            break;
-            case "VD":
-            
-            break;
-            case "SF":
-            
-            break;
+        if(this.xAtual == this.xFim && this.yAtual == this.yFim){
+            roboASerAvaliado.setFitness(roboASerAvaliado.getFitness() + 500);
+        } else{
+        
+            switch(acao){ //se acao for VR, Ve,... ele vai mover o robo e tals
+                case "VT":
+                    roboASerAvaliado.setFitness(roboASerAvaliado.getFitness() - 5);
+                break;
+                case "VE":
+                    roboASerAvaliado.setFitness(roboASerAvaliado.getFitness() - 5);
+                break;
+                case "VD":
+                    roboASerAvaliado.setFitness(roboASerAvaliado.getFitness() - 5);
+                break;
+                case "SF":
+                    roboASerAvaliado.setFitness(roboASerAvaliado.getFitness() - 10);
+                break;
+            }
         }
          
         
          
         
         // insereFitnessNoIndividuo(); (No proprio robo
-         return 0;//fitness
+         return roboASerAvaliado.getFitness();//fitness
      }
      
      //nem precisa desse metodo
