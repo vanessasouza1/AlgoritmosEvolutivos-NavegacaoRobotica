@@ -26,12 +26,14 @@ public class Geracao {
     private int fitnessMelhorIndividuo;
     private float fitnessMedio;
     private int idGeracao;
+    private static int id =0;
     private ArrayList<Robo> arrayIndividuos;
     private ArrayList<Integer> arrayFitnessIndividuos;
 
     
-    public Geracao(int idGeracao){
-        this.idGeracao = idGeracao;
+    public Geracao(){
+        id = id+1;
+        this.idGeracao = id;
         arrayIndividuos = new ArrayList<Robo>(); //adiciona todos os individuos
         arrayFitnessIndividuos = new ArrayList<Integer>();//adiciona o fitness de todos os individuo
     }
@@ -43,6 +45,10 @@ public class Geracao {
     
     public int getTamanhoPopulacao(){
         return arrayIndividuos.size();
+    }
+    
+    public int getIdGeracao(){
+        return idGeracao;
     }
     
    /* public void criaPopulacao(int qtdIndividuos){
@@ -73,12 +79,13 @@ public class Geracao {
         
     }*/
     
-    public void calculaFitnessMelhorIndividuo(){
+    public int calculaFitnessMelhorIndividuo(){
         Collections.sort(arrayFitnessIndividuos, Collections.reverseOrder()); //ordena em ordem decrescente
         fitnessMelhorIndividuo = arrayFitnessIndividuos.get(0);
+        return fitnessMelhorIndividuo;
     }
     
-    public void calculaMediaFitness(){
+    public float calculaMediaFitness(){
         int acc = 0;
         Iterator it = arrayFitnessIndividuos.iterator();
         while(it.hasNext()){
@@ -87,15 +94,16 @@ public class Geracao {
         }
         float media = acc/arrayFitnessIndividuos.size();
         fitnessMedio = media;
+        return fitnessMedio;
     }
     
-    public int getFitnessMelhorIndividuo(){
+  /*  public int getFitnessMelhorIndividuo(){
         return fitnessMelhorIndividuo;
     }
     
     public float getFitnessMedio(){
         return fitnessMedio;
-    }
+    }*/
     
     public ArrayList<Robo> getArrayIndividuos(){
         return arrayIndividuos;

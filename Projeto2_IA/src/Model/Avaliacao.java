@@ -239,16 +239,16 @@ public class Avaliacao {
                  sensorFinalDireita(), sensorFinalEsquerda(), sensorFinalAtras());
         
         switch(acao){ //se acao for VR, Ve,... ele vai mover o robo e tals
-            case "":
+            case "VT":
+                
+            break;
+            case "VE":
             
             break;
-            case "":
+            case "VD":
             
             break;
-            case "":
-            
-            break;
-            case "":
+            case "SF":
             
             break;
         }

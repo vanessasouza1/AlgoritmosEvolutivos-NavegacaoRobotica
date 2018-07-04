@@ -53,6 +53,10 @@ public class Robo {
         sequenciaPassos.add(posicao, elemento);
     }
     
+    public String getPassoPosicao(int posicao){
+        return sequenciaPassos.get(posicao);
+    }
+    
     public int getTamanhoCromossomo(){
         return sequenciaPassos.size();
     }
