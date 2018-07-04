@@ -22,29 +22,6 @@ public class Avaliacao {
        this.direcaoAtual = 'D'; /*possiveis direcoes D, E, Cima, Baixo    essa direcao é pra onde ele aponta a frente*/
     }
      
-    
-    
-    
-    public Integer[] obtemLeituraSensoresApartirDaPosicao(int fimX, int fimY, int roboX, int roboY, char posicao){
-        
-        /*A referencia vai ter q ser absoluta para n perder para que lado esta indo no labirinto*/
-        
-        //chama robo.leituraSensorial(); e depois chama movimentarobo
-        
-        
-       // if()
-       
-       //tem que procurar a direcao do fim
-       Integer[] leitura = new Integer[5];
-       
-       
-       return leitura;
-    }
-    
-    private void retornaPosicaoVaziAoRedor(){
-    
-        
-    }
    //se o retorno for 3 é pq ta errado
     private int sensorParedeFrente(){
         switch (direcaoAtual) {
@@ -123,29 +100,30 @@ public class Avaliacao {
     }
     private int sensorFinalFrente(){
         
-        if(yFim == yAtual && xFim > xAtual){
-            return 1;
-        }
-
-            return 0;
-        
-//       switch(direcaoAtual){
-//           case 'D':
-//               
-//           break;
-//           case 'E':
-//               
-//           break;
-//           case 'C':
-//               
-//           break;
-//           case 'B':
-//               
-//           break;
-//           
-//           ;
+       switch(direcaoAtual){
+            case 'D':
+              if(xAtual < xFim){
+                  return 1;
+              } 
+            break;
+            case 'E':
+               if(xAtual > xFim){
+                   return 1;
+               }
+            break;
+            case 'C':
+               if(yAtual > yFim){
+                   return 1;
+               }
+            break;
+            case 'B':
+               if(yAtual < yFim);
+            break;
+ 
            
-       //}
+       }
+       
+       return 0;
     }
     
     //precisa verificar qual é a nova direita, caso ele gire
@@ -220,25 +198,28 @@ public class Avaliacao {
     private int sensorFinalAtras(){
         switch(direcaoAtual){
            case 'D':
-               
+               if(xAtual < xFim){
+                   return 1;
+               }
            break;
            case 'E':
-               
+               if(xAtual > xFim){
+                   return 1;
+               }
            break;
            case 'C':
-               
+                if(yAtual < yFim){
+                   return 1;
+               }
            break;
            case 'B':
-               
+               if(yAtual > yFim){
+                   return 1;
+               }
            break;
            
        }
-        return 3;
-    }
-    
-    private void movimentaRobo(int xAtual, int yAtual, char direcao){ //a direcao padrão vai ser direita
-        //o melhor na movimentacao é deixar a direcao fixa
-        
+        return 0;
     }
     
    
@@ -260,30 +241,70 @@ public class Avaliacao {
         
             switch(acao){ //se acao for VR, Ve,... ele vai mover o robo e tals
                 case "VT":
+                    if(this.direcaoAtual == 'C'){
+                        this.direcaoAtual = 'B';
+                    }
+                    else if(this.direcaoAtual == 'B'){
+                        this.direcaoAtual = 'C';
+                    }
+                    else if(this.direcaoAtual == 'E'){
+                        this.direcaoAtual = 'D';
+                    }
+                    else if(this.direcaoAtual == 'D'){
+                        this.direcaoAtual = 'E';
+                    }
                     roboASerAvaliado.setFitness(roboASerAvaliado.getFitness() - 5);
                 break;
                 case "VE":
+                    if(this.direcaoAtual == 'C'){
+                        this.direcaoAtual = 'E';
+                    }
+                    else if(this.direcaoAtual == 'B'){
+                        this.direcaoAtual = 'D';
+                    }
+                    else if(this.direcaoAtual == 'E'){
+                        this.direcaoAtual = 'B';
+                    }
+                    else if(this.direcaoAtual == 'D'){
+                        this.direcaoAtual = 'C';
+                    }
                     roboASerAvaliado.setFitness(roboASerAvaliado.getFitness() - 5);
                 break;
                 case "VD":
+                    if(this.direcaoAtual == 'C'){
+                        this.direcaoAtual = 'D';
+                    }
+                    else if(this.direcaoAtual == 'B'){
+                        this.direcaoAtual = 'E';
+                    }
+                    else if(this.direcaoAtual == 'E'){
+                        this.direcaoAtual = 'C';
+                    }
+                    else if(this.direcaoAtual == 'D'){
+                        this.direcaoAtual = 'B';
+                    }
                     roboASerAvaliado.setFitness(roboASerAvaliado.getFitness() - 5);
                 break;
                 case "SF":
+                    if(this.direcaoAtual == 'C'){
+                        this.yAtual--;
+                    }
+                    else if(this.direcaoAtual == 'B'){
+                        this.yAtual++;
+                    }
+                    else if(this.direcaoAtual == 'E'){
+                        this.xAtual--;
+                    }
+                    else if(this.direcaoAtual == 'D'){
+                        this.xAtual++;
+                    }
                     roboASerAvaliado.setFitness(roboASerAvaliado.getFitness() - 10);
                 break;
             }
         }
-         
-        
-         
         
         // insereFitnessNoIndividuo(); (No proprio robo
          return roboASerAvaliado.getFitness();//fitness
-     }
-     
-     //nem precisa desse metodo
-     private void insereFitnessNoIndividuo(int geracaoIndividuo, int idRobo, int fitness){
-         
      }
      
      
